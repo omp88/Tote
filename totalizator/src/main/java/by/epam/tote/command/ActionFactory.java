@@ -22,14 +22,12 @@ public class ActionFactory {
 		ActionCommand current;
 
 		if (action == null || action.isEmpty()) {
-			LOGGER.error("no command");
 			return new EmptyCommand();
 		}
 		try {
 			CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
 			current = currentEnum.getCurrentCommand();
 		} catch (IllegalArgumentException e) {
-			LOGGER.error("no command", e);
 			current = new EmptyCommand();
 		}
 		return current;

@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setLocale value="${lang}"  />
+<fmt:setBundle basename="locale"/>
 <html>
 
 <head>
@@ -41,6 +44,11 @@
 			</div>
 		</div>
 	</nav>
-<h2>OOps!</h2>
+<div class="content-wrap">
+ <div class="alert alert-warning">
+  <label><fmt:message key="${error}"/></label>
+ </div>
+ </div>
+ <c:remove var="error" scope="session" />
 </body>
 </html>
