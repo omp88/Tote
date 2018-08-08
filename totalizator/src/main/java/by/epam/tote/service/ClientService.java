@@ -46,8 +46,9 @@ public class ClientService {
 	 *
 	 * @param client
 	 */
-	public void createNewClient(Client client) {
+	public boolean createNewClient(Client client) {
 
+		boolean result = false;
 		ClientDaoImpl dao = new ClientDaoImpl();
 		TransactionManager manager = new TransactionManager(dao);
 		try {
@@ -55,6 +56,7 @@ public class ClientService {
 			checkLoginOriginal(dao, client.getLogin());
 			dao.createNewClient(client);
 			manager.commit();
+			result = true;
 		} catch (DAOException e) {
 			manager.rollback();
 			LOGGER.error("Cant create new client", e);
@@ -62,6 +64,7 @@ public class ClientService {
 			manager.setAutoCommit(true);
 			manager.close();
 		}
+		return result;
 	}
 
 	/**

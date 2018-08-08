@@ -41,15 +41,19 @@ public class RegisteredCommand implements ActionCommand {
 			client.setEmail(clientParams.get(ClientConstant.EMAIL));
 			client.setPassword(clientParams.get(ClientConstant.PASSWORD));
 			client.setPassportId(clientParams.get(ClientConstant.PASSPORT));
-			ClientService service = new ClientService();
-			service.createNewClient(client);
-			request.getSession().setAttribute(SessionConstant.MESSAGE, "message.registration_success");
-			return new Router(RouteType.REDIRECT, PageConstant.LOGIN_PAGE);
-
 		} else {
-			request.getSession().setAttribute(SessionConstant.ERROR, "error.registration_fail");
+			request.getSession().setAttribute(SessionConstant.ERROR, "error.registration_data_incorrect");
 			return new Router(RouteType.REDIRECT, PageConstant.REGISTER_PAGE);
 		}
-	}
 
+		ClientService service = new ClientService();
+		if (service.createNewClient(client)) {
+			request.getSession().setAttribute(SessionConstant.MESSAGE, "message.registration_success");
+			return new Router(RouteType.REDIRECT, PageConstant.LOGIN_PAGE);
+		} else {
+			request.getSession().setAttribute(SessionConstant.ERROR, "error.error.registration_fail_login_occupied");
+			return new Router(RouteType.REDIRECT, PageConstant.REGISTER_PAGE);
+		}
+
+	}
 }
