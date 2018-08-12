@@ -3,12 +3,12 @@ epam final project
 
 client accounts:
 
-Elit : Limited
-Ligula : Turpis
-Libero : Proin
-Martin : Rhoncus
-Euismod : Mauris
-Martin : Fringuilla
+1) Elit : Limited
+2) Ligula : Turpis
+3) Libero : Proin
+4) Martin : Rhoncus
+5) Euismod : Mauris
+6) Martin : Fringuilla
 
 admin account:
 
