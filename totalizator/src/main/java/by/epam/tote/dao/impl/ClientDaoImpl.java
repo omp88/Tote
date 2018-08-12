@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.epam.tote.constant.SqlConstant;
+import by.epam.tote.constant.SqlColumnConstant;
 import by.epam.tote.dao.AbstractDao;
 import by.epam.tote.dao.ClientDao;
 import by.epam.tote.entity.BetCondition;
@@ -385,14 +385,14 @@ public class ClientDaoImpl extends AbstractDao implements ClientDao {
 	private FootballEvent extractFootballEvent(ResultSet set) throws SQLException {
 
 		FootballEvent event = new FootballEvent();
-		event.setId(set.getInt(SqlConstant.EVENT_ID));
-		event.setFootballName(set.getString(SqlConstant.EVENT_NAME));
-		event.setStartTime(set.getTimestamp(SqlConstant.EVENT_START));
-		event.setTeam1Name(set.getString(SqlConstant.TEAM_1_NAME));
-		event.setTeam2Name(set.getString(SqlConstant.TEAM_2_NAME));
-		event.setTeam1WinCoef(set.getDouble(SqlConstant.TEAM_1_WIN_COEFF));
-		event.setTeam2WinCoef(set.getDouble(SqlConstant.TEAM_2_WIN_COEFF));
-		event.setDrawCoef(set.getDouble(SqlConstant.DRAW_COEF));
+		event.setId(set.getInt(SqlColumnConstant.EVENT_ID));
+		event.setFootballName(set.getString(SqlColumnConstant.EVENT_NAME));
+		event.setStartTime(set.getTimestamp(SqlColumnConstant.EVENT_START));
+		event.setTeam1Name(set.getString(SqlColumnConstant.TEAM_1_NAME));
+		event.setTeam2Name(set.getString(SqlColumnConstant.TEAM_2_NAME));
+		event.setTeam1WinCoef(set.getDouble(SqlColumnConstant.TEAM_1_WIN_COEFF));
+		event.setTeam2WinCoef(set.getDouble(SqlColumnConstant.TEAM_2_WIN_COEFF));
+		event.setDrawCoef(set.getDouble(SqlColumnConstant.DRAW_COEF));
 		return event;
 	}
 
@@ -406,14 +406,14 @@ public class ClientDaoImpl extends AbstractDao implements ClientDao {
 	private Client extractClient(ResultSet set) throws SQLException {
 
 		Client client = new Client();
-		client.setId(set.getInt(SqlConstant.CLIENT_ID));
-		client.setFirstName(set.getString(SqlConstant.FIRST_NAME));
-		client.setLastName(set.getString(SqlConstant.LAST_NAME));
-		client.setLogin(set.getString(SqlConstant.LOGIN));
-		client.setEmail(set.getString(SqlConstant.EMAIL));
-		client.setHashedPassword(set.getString(SqlConstant.PASSWORD));
-		client.setPassportId(set.getString(SqlConstant.PASSPORT));
-		client.setMoney(set.getBigDecimal(SqlConstant.MONEY_AMOUNT));
+		client.setId(set.getInt(SqlColumnConstant.CLIENT_ID));
+		client.setFirstName(set.getString(SqlColumnConstant.FIRST_NAME));
+		client.setLastName(set.getString(SqlColumnConstant.LAST_NAME));
+		client.setLogin(set.getString(SqlColumnConstant.LOGIN));
+		client.setEmail(set.getString(SqlColumnConstant.EMAIL));
+		client.setHashedPassword(set.getString(SqlColumnConstant.PASSWORD));
+		client.setPassportId(set.getString(SqlColumnConstant.PASSPORT));
+		client.setMoney(set.getBigDecimal(SqlColumnConstant.MONEY_AMOUNT));
 		return client;
 	}
 
@@ -427,15 +427,15 @@ public class ClientDaoImpl extends AbstractDao implements ClientDao {
 	private FootballBet extractBet(ResultSet set) throws SQLException {
 
 		FootballBet bet = new FootballBet();
-		bet.setId(set.getInt(SqlConstant.BET_ID));
-		bet.setEventId(set.getInt(SqlConstant.EVENT_ID));
-		bet.setClientId(set.getInt(SqlConstant.CLIENT_ID));
-		bet.setCondition(BetCondition.valueOf(set.getString(SqlConstant.BET_CONDITION).toUpperCase()));
-		bet.setAmount(set.getBigDecimal(SqlConstant.BET_AMOUNT));
-		bet.setTeam1ExpectedScore(set.getInt(SqlConstant.EXP_TEAM_1_SCORE));
-		bet.setTeam2ExpectedScore(set.getInt(SqlConstant.EXP_TEAM_2_SCORE));
-		bet.setCoeff(set.getDouble(SqlConstant.COEFF));
-		bet.setState(BetState.valueOf(set.getString(SqlConstant.STATE).toUpperCase()));
+		bet.setId(set.getInt(SqlColumnConstant.BET_ID));
+		bet.setEventId(set.getInt(SqlColumnConstant.EVENT_ID));
+		bet.setClientId(set.getInt(SqlColumnConstant.CLIENT_ID));
+		bet.setCondition(BetCondition.valueOf(set.getString(SqlColumnConstant.BET_CONDITION).toUpperCase()));
+		bet.setAmount(set.getBigDecimal(SqlColumnConstant.BET_AMOUNT));
+		bet.setTeam1ExpectedScore(set.getInt(SqlColumnConstant.EXP_TEAM_1_SCORE));
+		bet.setTeam2ExpectedScore(set.getInt(SqlColumnConstant.EXP_TEAM_2_SCORE));
+		bet.setCoeff(set.getDouble(SqlColumnConstant.COEFF));
+		bet.setState(BetState.valueOf(set.getString(SqlColumnConstant.STATE).toUpperCase()));
 		return bet;
 	}
 }

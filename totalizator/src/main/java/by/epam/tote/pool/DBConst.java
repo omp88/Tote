@@ -1,7 +1,7 @@
 package by.epam.tote.pool;
 
 
-public enum DBConst {
+ enum DBConst {
 	
 	/** The db url. */
 	DB_URL,

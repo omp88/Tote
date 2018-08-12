@@ -1,8 +1,8 @@
 package by.epam.tote.constant;
 
-public class SqlConstant {
+public class SqlColumnConstant {
 	
-	private SqlConstant() {
+	private SqlColumnConstant() {
 	}
 	
 	public static final String ADMIN_ID = "admin_id";

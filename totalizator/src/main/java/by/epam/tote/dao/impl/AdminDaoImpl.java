@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import by.epam.tote.constant.SqlConstant;
+import by.epam.tote.constant.SqlColumnConstant;
 import by.epam.tote.dao.AbstractDao;
 import by.epam.tote.dao.AdminDao;
 import by.epam.tote.entity.Admin;
@@ -334,7 +334,7 @@ public class AdminDaoImpl extends AbstractDao implements AdminDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				result = resultSet.getInt(SqlConstant.FOOTBALL_EVENT_ID);
+				result = resultSet.getInt(SqlColumnConstant.FOOTBALL_EVENT_ID);
 			}
 			if (id == result) {
 				return true;
@@ -363,7 +363,7 @@ public class AdminDaoImpl extends AbstractDao implements AdminDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				result = resultSet.getInt(SqlConstant.EVENT_ID);
+				result = resultSet.getInt(SqlColumnConstant.EVENT_ID);
 			}
 			if (id == result) {
 				return true;
@@ -392,7 +392,7 @@ public class AdminDaoImpl extends AbstractDao implements AdminDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				result = resultSet.getInt(SqlConstant.BET_ID);
+				result = resultSet.getInt(SqlColumnConstant.BET_ID);
 			}
 			if (id == result) {
 				return true;
@@ -421,7 +421,7 @@ public class AdminDaoImpl extends AbstractDao implements AdminDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				result = resultSet.getInt(SqlConstant.CLIENT_ID);
+				result = resultSet.getInt(SqlColumnConstant.CLIENT_ID);
 			}
 			if (id == result) {
 				return true;
@@ -443,9 +443,9 @@ public class AdminDaoImpl extends AbstractDao implements AdminDao {
 	private Admin extractAdmin(ResultSet set) throws SQLException {
 
 		Admin admin = new Admin();
-		admin.setId(set.getInt(SqlConstant.ADMIN_ID));
-		admin.setLogin(set.getString(SqlConstant.LOGIN));
-		admin.setHashedPassword(set.getString(SqlConstant.PASSWORD));
+		admin.setId(set.getInt(SqlColumnConstant.ADMIN_ID));
+		admin.setLogin(set.getString(SqlColumnConstant.LOGIN));
+		admin.setHashedPassword(set.getString(SqlColumnConstant.PASSWORD));
 		return admin;
 	}
 
@@ -459,14 +459,14 @@ public class AdminDaoImpl extends AbstractDao implements AdminDao {
 	private Client extractClient(ResultSet set) throws SQLException {
 
 		Client client = new Client();
-		client.setId(set.getInt(SqlConstant.CLIENT_ID));
-		client.setFirstName(set.getString(SqlConstant.FIRST_NAME));
-		client.setLastName(set.getString(SqlConstant.LAST_NAME));
-		client.setLogin(set.getString(SqlConstant.LOGIN));
-		client.setEmail(set.getString(SqlConstant.EMAIL));
-		client.setHashedPassword(set.getString(SqlConstant.PASSWORD));
-		client.setPassportId(set.getString(SqlConstant.PASSPORT));
-		client.setMoney(set.getBigDecimal(SqlConstant.MONEY_AMOUNT));
+		client.setId(set.getInt(SqlColumnConstant.CLIENT_ID));
+		client.setFirstName(set.getString(SqlColumnConstant.FIRST_NAME));
+		client.setLastName(set.getString(SqlColumnConstant.LAST_NAME));
+		client.setLogin(set.getString(SqlColumnConstant.LOGIN));
+		client.setEmail(set.getString(SqlColumnConstant.EMAIL));
+		client.setHashedPassword(set.getString(SqlColumnConstant.PASSWORD));
+		client.setPassportId(set.getString(SqlColumnConstant.PASSPORT));
+		client.setMoney(set.getBigDecimal(SqlColumnConstant.MONEY_AMOUNT));
 		return client;
 	}
 
@@ -480,15 +480,15 @@ public class AdminDaoImpl extends AbstractDao implements AdminDao {
 	private FootballBet extractBet(ResultSet set) throws SQLException {
 
 		FootballBet bet = new FootballBet();
-		bet.setId(set.getInt(SqlConstant.BET_ID));
-		bet.setEventId(set.getInt(SqlConstant.EVENT_ID));
-		bet.setClientId(set.getInt(SqlConstant.CLIENT_ID));
-		bet.setCondition(BetCondition.valueOf(set.getString(SqlConstant.BET_CONDITION).toUpperCase()));
-		bet.setAmount(set.getBigDecimal(SqlConstant.BET_AMOUNT));
-		bet.setTeam1ExpectedScore(set.getInt(SqlConstant.EXP_TEAM_1_SCORE));
-		bet.setTeam2ExpectedScore(set.getInt(SqlConstant.EXP_TEAM_2_SCORE));
-		bet.setCoeff(set.getDouble(SqlConstant.COEFF));
-		bet.setState(BetState.valueOf(set.getString(SqlConstant.STATE).toUpperCase()));
+		bet.setId(set.getInt(SqlColumnConstant.BET_ID));
+		bet.setEventId(set.getInt(SqlColumnConstant.EVENT_ID));
+		bet.setClientId(set.getInt(SqlColumnConstant.CLIENT_ID));
+		bet.setCondition(BetCondition.valueOf(set.getString(SqlColumnConstant.BET_CONDITION).toUpperCase()));
+		bet.setAmount(set.getBigDecimal(SqlColumnConstant.BET_AMOUNT));
+		bet.setTeam1ExpectedScore(set.getInt(SqlColumnConstant.EXP_TEAM_1_SCORE));
+		bet.setTeam2ExpectedScore(set.getInt(SqlColumnConstant.EXP_TEAM_2_SCORE));
+		bet.setCoeff(set.getDouble(SqlColumnConstant.COEFF));
+		bet.setState(BetState.valueOf(set.getString(SqlColumnConstant.STATE).toUpperCase()));
 		return bet;
 	}
 
