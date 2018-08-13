@@ -13,3 +13,5 @@ client accounts:
 admin account:
 
 admin : StrongPassword
+
+DataBase name : totalizator
