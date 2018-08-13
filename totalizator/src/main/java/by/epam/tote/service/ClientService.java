@@ -73,15 +73,15 @@ public class ClientService {
 	 * @param bet
 	 * @return the big decimal
 	 */
-	public BigDecimal addBet(FootballBet bet) {
+	public boolean addBet(FootballBet bet) {
 
 		ClientDaoImpl dao = new ClientDaoImpl();
 		TransactionManager manager = new TransactionManager(dao);
 		BigDecimal newAmount = null;
+		boolean result = false;
 		try {
 			manager.setAutoCommit(false);
 			checkBetTime(dao, bet.getEventId(), bet.getBetTime());
-			LOGGER.debug(bet.getAmount() + " amount");
 			newAmount = checkPayingCapacity(dao, bet.getClientId(), bet.getAmount());
 			collectAmountOfBet(dao, bet.getClientId(), newAmount);
 			if (bet.getCondition().toString() == "SCORE") {
@@ -89,6 +89,7 @@ public class ClientService {
 			} else {
 				dao.createNewBetWithoutScore(bet);
 			}
+			result = true;
 			manager.commit();
 		} catch (DAOException e) {
 			manager.rollback();
@@ -96,7 +97,7 @@ public class ClientService {
 		} finally {
 			manager.close();
 		}
-		return newAmount;
+		return result;
 	}
 
 	/**
@@ -283,10 +284,9 @@ public class ClientService {
 	 * @throws DAOException
 	 */
 	private BigDecimal checkPayingCapacity(ClientDaoImpl dao, int clientId, BigDecimal amount) throws DAOException {
+		
 		Client client = dao.findClientById(clientId);
-		LOGGER.debug(client.getFirstName());
 		int result = client.getMoney().compareTo(amount);
-		LOGGER.debug(result + " result");
 		if (result < 0) {
 			LOGGER.error("Not enough money to bet");
 			throw new DAOException();

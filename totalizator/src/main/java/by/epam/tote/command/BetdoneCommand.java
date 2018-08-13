@@ -78,8 +78,16 @@ public class BetdoneCommand implements ActionCommand {
 		bet.setBetTime(new Timestamp(System.currentTimeMillis()));
 		bet.setState(BetState.STAND);
 
-		BigDecimal newAmount = service.addBet(bet);
-		client.setMoney(newAmount);
+		boolean result = service.addBet(bet);
+		
+		if(!result) {
+			FootballEvent forwardEvent = service
+					.findFooballEvent(Integer.parseInt(request.getParameter(EventConstant.EVENT_ID)));
+			request.setAttribute(EventConstant.EVENT, forwardEvent);
+			request.getSession().setAttribute(SessionConstant.ERROR, "error.bet_fail");
+			return new Router(RouteType.FORWARD, PageConstant.BET_PAGE);
+		}
+		client.setMoney(service.findClientsById(client.getId()).getMoney());
 		request.setAttribute(SessionConstant.CLIENT, client);
 		request.getSession().setAttribute(SessionConstant.MESSAGE, "message.bet_success");
 		return new Router(RouteType.REDIRECT, PageConstant.MAIN_PAGE);
