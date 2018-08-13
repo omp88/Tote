@@ -77,9 +77,8 @@ public class BetdoneCommand implements ActionCommand {
 		bet.setAmount(BigDecimal.valueOf(Double.parseDouble(amountParam)));
 		bet.setBetTime(new Timestamp(System.currentTimeMillis()));
 		bet.setState(BetState.STAND);
-
-		boolean result = service.addBet(bet);
 		
+		boolean result = service.addBet(bet);
 		if(!result) {
 			FootballEvent forwardEvent = service
 					.findFooballEvent(Integer.parseInt(request.getParameter(EventConstant.EVENT_ID)));
