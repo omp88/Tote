@@ -14,11 +14,21 @@ import com.mysql.jdbc.Driver;
 
     class DataBaseManager {
 
+	
+
 	/** The Constant LOGGER. */
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	/** The Constant PROPERTIES_NAME. */
+	/** The Constants  */
 	private static final  String PROPERTIES_NAME = "database";
+	
+	private static final String CHARACTER_ENCODING = "characterEncoding";
+
+	private static final String USE_SSL = "useSSL";
+
+	private static final String PASSWORD = "password";
+
+	private static final String USER = "user";
 	
 	/** The DataBase bundle. */
 	private ResourceBundle dataBaseBundle;
@@ -46,10 +56,10 @@ import com.mysql.jdbc.Driver;
 
 		Properties props = new Properties();
 
-		props.put("user", dataBaseBundle.getString(DBConst.DB_USERNAME.name()));
-		props.put("password", dataBaseBundle.getString(DBConst.DB_PASSWORD.name()));
-		props.put("useSSL", dataBaseBundle.getString(DBConst.DB_USE_SSL.name()));
-		props.put("characterEncoding", dataBaseBundle.getString(DBConst.DB_CHARACTER_ENCODING.name()));
+		props.put(USER, dataBaseBundle.getString(DBConst.DB_USERNAME.name()));
+		props.put(PASSWORD, dataBaseBundle.getString(DBConst.DB_PASSWORD.name()));
+		props.put(USE_SSL, dataBaseBundle.getString(DBConst.DB_USE_SSL.name()));
+		props.put(CHARACTER_ENCODING, dataBaseBundle.getString(DBConst.DB_CHARACTER_ENCODING.name()));
 
 		return props;
 	}
