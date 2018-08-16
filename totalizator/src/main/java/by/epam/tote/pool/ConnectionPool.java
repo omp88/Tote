@@ -62,14 +62,9 @@ public class ConnectionPool {
 		workingConnections = new LinkedList<>();
 
 		for (int i = 0; i < minPoolSize; i++) {
-			try {
-				Connection connection = DriverManager.getConnection(connectionURL, properties);
-				ProxyConnection proxyConnection = new ProxyConnection(connection);
-
-				availableConnections.offer(proxyConnection);
-			} catch (SQLException e) {
-				LOGGER.error("Connection not initialized", e);
-			}
+			
+			ProxyConnection proxyConnection = createConnection();
+			availableConnections.offer(proxyConnection);
 		}
 		if (availableConnections.isEmpty()) {
 			LOGGER.fatal("No connections in pool");
@@ -112,7 +107,8 @@ public class ConnectionPool {
 		try {
 			connection = DriverManager.getConnection(connectionURL, properties);
 		} catch (SQLException e) {
-			LOGGER.error("Connection hasn't been initialized!", e);
+			LOGGER.fatal("Connection hasn't been initialized!", e);
+			throw new RuntimeException();
 		}
 		return new ProxyConnection(connection);
 	}
